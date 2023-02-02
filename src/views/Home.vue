@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <h1>Homepage</h1>
+    <!-- tutorial #4, #5
     <p class="red white--text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, aliquid? Numquam facere delectus est illum, id cum beatae modi hic et reiciendis architecto maxime itaque adipisci pariatur. Delectus, consectetur non.</p>
     <p class="pink lighten-4 red--text text--darken-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, provident. Velit sunt illum, eum praesentium quibusdam laborum dolorem unde est ad incidunt at aliquam earum dignissimos dolores doloremque! Qui, iusto!</p>
     <h1>Massive Display</h1>
@@ -34,6 +35,13 @@
     <v-btn fab depressed small dark color="purple">
       <v-icon>mdi-heart</v-icon>
     </v-btn>
+    -->
+
+    <!-- <v-btn class="hidden-md-and-down">click me</v-btn> -->
+
+    <!-- <v-btn class="hidden-md-and-up">click me</v-btn> -->
+
+    <v-btn class="hidden-sm-only">click me</v-btn>
 
     <br/>
     <br/>
