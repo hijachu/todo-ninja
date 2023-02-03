@@ -21,7 +21,7 @@
       -->
     </v-toolbar>
 
-    <v-navigation-drawer v-model="drawer" app class="primary">
+    <v-navigation-drawer v-model="drawer" app absolute class="primary">
       <v-list>
         <v-list-item v-for="link in links" :key="link.text" :to="link.route">
           <v-list-item-action>
