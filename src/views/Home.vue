@@ -41,7 +41,7 @@
 
     <!-- <v-btn class="hidden-md-and-up">click me</v-btn> -->
 
-    <v-btn class="hidden-sm-only">click me</v-btn>
+    <!-- <v-btn class="hidden-sm-only">click me</v-btn> -->
 
     <br/>
     <br/>
