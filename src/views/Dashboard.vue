@@ -3,29 +3,26 @@
     <h1 class="subtitle-1 grey--text">Dashboard</h1>
 
     <v-container class="my-5">
-      <v-row no-gutters class="my-3">
-        <v-col sm="12" md="6">
-          <v-btn tile outlined color="primary" block>1</v-btn>
-        </v-col>
-        <v-col sm="4" md="2">
-          <v-btn tile outlined color="primary" block>2</v-btn>
-        </v-col>
-        <v-col sm="4" md="2">
-          <v-btn tile outlined color="primary" block>3</v-btn>
-        </v-col>
-        <v-col sm="4" md="2">
-          <v-btn tile outlined color="primary" block>4</v-btn>
-        </v-col>
-      </v-row>
-
-      <v-row no-gutters justify="space-around">
-        <v-col sm="4" md="3">
-          <v-btn outlined tile color="success" block>1</v-btn>
-        </v-col>
-        <v-col sm="4" md="3">
-          <v-btn outlined tile color="success" block>2</v-btn>
-        </v-col>
-      </v-row>
+      <v-card flat class="pa-3">
+        <v-row>
+          <v-col cols="12" md="6">
+            <div class="caption grey--text">Project title</div>
+            <div>Create a new website</div>
+          </v-col>
+          <v-col cols="6" sm="4" md="2">
+            <div class="caption grey--text">Person</div>
+            <div>The Net Ninja</div>
+          </v-col>
+          <v-col cols="6" sm="4" md="2">
+            <div class="caption grey--text">Due by</div>
+            <div>1st Jan 2019</div>
+          </v-col>
+          <v-col cols="2" sm="4" md="2">
+            <div class="caption grey--text">Due by</div>
+            <div>1st Jan 2019</div>
+          </v-col>
+        </v-row>
+      </v-card>
     </v-container>
   </div>
 </template>
