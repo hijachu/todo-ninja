@@ -20,8 +20,11 @@
             <div>{{ project.due }}</div>
           </v-col>
           <v-col cols="2" sm="4" md="2">
-            <div class="caption grey--text">Status</div>
-            <div>{{ project.status }}</div>
+            <!-- <div class="caption grey--text">Status</div> -->
+            <!-- <div>{{ project.status }}</div> -->
+            <div class="float-right">
+              <v-chip small :color="colors[`${project.status}`]" :class="`${project.status} white--text caption my-2`" >{{ project.status }}</v-chip>
+            </div>
           </v-col>
         </v-row>
       </v-card>
@@ -43,7 +46,13 @@ export default {
         { title: 'Code up the homepage', person: 'Chun Li', due: '10th Jan 2019', status: 'complete', content: 'Tempor quis proident magna enim aliquip mollit ea tempor ea velit officia dolor quis. Velit et ea sit est est nulla. Elit pariatur voluptate quis nostrud excepteur irure esse pariatur enim magna sint.' },
         { title: 'Design video thumbnails', person: 'Ryu', due: '20st Dec 2018', status: 'complete', content: 'Mollit sint amet magna esse. Sint qui occaecat velit proident magna adipisicing sunt do. Irure est mollit culpa culpa. Amet qui magna exercitation est in.' },
         { title: 'Create a community forum', person: 'Gouken', due: '20st Oct 2018', status: 'overdue', content: 'Reprehenderit magna deserunt cupidatat voluptate id. Veniam cillum esse labore enim ut labore consectetur. Lorem cillum aliquip anim eu eu do. Deserunt fugiat laborum aliqua do magna ut et. Reprehenderit irure eiusmod nisi nisi amet officia. Eiusmod laborum adipisicing commodo et pariatur velit eiusmod eu mollit velit nulla. Ullamco est ut dolor minim reprehenderit nulla consequat irure irure enim mollit aliquip Lorem.' },
-      ]
+      ],
+      colors: {
+        'complete': 'teal',
+        'ongoing': 'orange',
+        // 'overdue': 'tomato',
+        'overdue': 'red',
+      }
     }
   },
 
@@ -66,4 +75,18 @@ export default {
 .row {
   border-bottom: 1px solid #ccc;
 }
+
+.v-chip.complete {
+  background: #3cd1c2;
+}
+
+.v-chip.ongoing {
+  background: orange;
+}
+
+.v-chip.overdue {
+  background: tomato;
+}
+
+
 </style>
