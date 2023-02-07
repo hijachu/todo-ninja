@@ -22,6 +22,22 @@
     </v-toolbar>
 
     <v-navigation-drawer v-model="drawer" app absolute class="primary">
+      <v-list class="mt-5">
+        <v-list-item class="d-flex justify-center">
+          <v-list-item-avatar size="100">
+            <img src="/avatar-1.png" />
+          </v-list-item-avatar>
+        </v-list-item>
+
+        <v-list-item>
+          <v-list-item-content>
+            <v-list-item-title class="text-center white--text subtitle-1 mt-1">
+              The Net Ninja
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
       <v-list>
         <v-list-item v-for="link in links" :key="link.text" :to="link.route">
           <v-list-item-action>
