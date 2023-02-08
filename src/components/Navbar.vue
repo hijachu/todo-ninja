@@ -66,6 +66,12 @@
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+
+        <v-list-item class="mt-4 mb-3">
+          <v-list-item-content>
+            <Popup />
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
 
       <v-list>
@@ -87,7 +93,13 @@
 </template>
 
 <script>
+import Popup from './Popup'
+
 export default {
+  components: {
+    Popup
+  },
+
   data() {
     return {
       drawer: false,
@@ -117,4 +129,17 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.v-navigation-drawer {
+  z-index: 999999 !important;
+}
+
+.mt-5 .v-list-item__content{
+justify-content: center;
+text-align: left;
+display: grid;
+}
+
+</style>
 
