@@ -16,15 +16,6 @@
             <span>Sort projects by project name</span>
           </v-tooltip>
 
-          <!-- <v-btn color="grey" text @click="sortBy('title')">
-            <v-icon small left>mdi-folder</v-icon>
-            <span class="cpation text-lowercase">By Project Name</span>
-          </v-btn> -->
-          <!-- <v-btn color="grey" text @click="sortBy('person')">
-            <v-icon small left>mdi-account</v-icon>
-            <span class="cpation text-lowercase">By Person</span>
-          </v-btn> -->
-
           <v-tooltip top>
             <template v-slot:activator="{ on, attrs }">
               <v-btn color="grey" text @click="sortBy('person')" v-bind="attrs" v-on="on">
