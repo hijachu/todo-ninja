@@ -9,9 +9,22 @@
         <h2>Add a New Project</h2>
       </v-card-title>
       <v-card-text>
-        <v-form class="px-3">
-          <v-text-field name="title" label="Title" id="title" v-model="title" prepend-icon="mdi-folder"></v-text-field>
-          <v-textarea label="Information" name="information" v-model="content" prepend-icon="mdi-pencil"></v-textarea>
+        <v-form class="px-3" ref="form">
+          <v-text-field
+            name="title"
+            label="Title"
+            id="title"
+            v-model="title"
+            prepend-icon="mdi-folder"
+            :rules="inputRules"
+          ></v-text-field>
+          <v-textarea
+            label="Information"
+            name="information"
+            v-model="content"
+            prepend-icon="mdi-pencil"
+            :rules="inputRules"
+          ></v-textarea>
 
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
@@ -22,6 +35,7 @@
                 v-bind="attrs"
                 v-on="on"
                 :value=formattedDate
+                :rules="inputRules"
               ></v-text-field>
             </template>
             <v-date-picker v-model="due">
@@ -48,13 +62,18 @@ export default {
       dialog: true,
       title: '',
       content: '',
-      due: null
+      due: null,
+      inputRules: [
+        v => v.length >= 3 || 'Minimum length is 3 characters'
+      ]
     };
   },
 
   methods: {
     submit() {
-      console.log(this.title, this.content);
+      if (this.$refs.form.validate()) {
+        console.log(this.title, this.content);
+      }
     },
   },
 
