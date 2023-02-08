@@ -1,20 +1,7 @@
 <template>
-  <v-dialog
-    v-model="dialog"
-    scrollable
-    persistent :overlay="false"
-    max-width="600px"
-    transition="dialog-transition"
-  >
+  <v-dialog v-model="dialog" scrollable persistent :overlay="false" max-width="600px" transition="dialog-transition">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn
-        color="success"
-        dark
-        v-bind="attrs"
-        v-on="on"
-      >
-        Add new project
-      </v-btn>
+      <v-btn color="success" dark v-bind="attrs" v-on="on"> Add new project </v-btn>
     </template>
 
     <v-card>
@@ -23,21 +10,30 @@
       </v-card-title>
       <v-card-text>
         <v-form class="px-3">
-          <v-text-field
-            name="title"
-            label="Title"
-            id="title"
-            v-model="title"
-            prepend-icon="mdi-folder"
-          ></v-text-field>
-          <v-textarea
-            label="Information"
-            name="information"
-            v-model="content"
-            prepend-icon="mdi-pencil"
-          ></v-textarea>
+          <v-text-field name="title" label="Title" id="title" v-model="title" prepend-icon="mdi-folder"></v-text-field>
+          <v-textarea label="Information" name="information" v-model="content" prepend-icon="mdi-pencil"></v-textarea>
 
-          <v-btn color="success" class="mx-0 mt-0" depressed @click="submit">Add project</v-btn>
+          <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-text-field
+                label="Due date"
+                prepend-icon="mdi-calendar-range"
+                readonly
+                v-bind="attrs"
+                v-on="on"
+                :value=formattedDate
+              ></v-text-field>
+            </template>
+            <v-date-picker v-model="due">
+              <v-spacer></v-spacer>
+              <v-btn text color="primary" @click="menu = false"> Cancel </v-btn>
+              <v-btn text color="primary" @click="$refs.menu.save(date)"> OK </v-btn>
+            </v-date-picker>
+          </v-menu>
+
+          <!-- <v-spacer></v-spacer> -->
+
+          <v-btn color="success" class="mx-0 mt-3" depressed @click="submit">Add project</v-btn>
         </v-form>
       </v-card-text>
     </v-card>
@@ -45,19 +41,27 @@
 </template>
 
 <script>
+import format from 'date-fns/format';
 export default {
-  data () {
+  data() {
     return {
       dialog: true,
       title: '',
-      content: ''
-    }
+      content: '',
+      due: null
+    };
   },
 
   methods: {
     submit() {
       console.log(this.title, this.content);
+    },
+  },
+
+  computed: {
+    formattedDate() {
+      return this.due ? format(new Date(this.due), 'do MMM yyyy') : ''
     }
   }
-}
+};
 </script>
