@@ -56,10 +56,13 @@
 
 <script>
 import format from 'date-fns/format';
+import db from '@/firebase';
+import { collection, addDoc } from "firebase/firestore";
+
 export default {
   data() {
     return {
-      dialog: true,
+      dialog: false,
       title: '',
       content: '',
       due: null,
@@ -70,9 +73,26 @@ export default {
   },
 
   methods: {
-    submit() {
+    async submit() {
       if (this.$refs.form.validate()) {
         console.log(this.title, this.content);
+        const project = {
+          title: this.title,
+          content: this.content,
+          due: format(new Date(this.due), 'do MMM yyyy'),
+          person: 'The Net Ninja',
+          status: 'ongoing'
+        }
+
+        // db.collection('projects').add(project)
+        //   .then((result) => {
+        //     console.log('added to db');
+        //     console.log('Result', result);
+        //   })
+
+        // Add a new document with a generated id.
+        const docRef = await addDoc(collection(db, "projects"), project);
+        console.log("Document written with ID: ", docRef.id);
       }
     },
   },
