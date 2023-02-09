@@ -1,5 +1,12 @@
 <template>
-  <v-dialog v-model="dialog" scrollable persistent :overlay="false" max-width="600px" transition="dialog-transition">
+  <v-dialog
+    v-model="dialog"
+    scrollable
+    persistent
+    :overlay="false"
+    max-width="600px"
+    transition="dialog-transition"
+  >
     <template v-slot:activator="{ on, attrs }">
       <v-btn color="success" dark v-bind="attrs" v-on="on"> Add new project </v-btn>
     </template>
@@ -47,7 +54,13 @@
 
           <!-- <v-spacer></v-spacer> -->
 
-          <v-btn color="success" class="mx-0 mt-3" depressed @click="submit">Add project</v-btn>
+          <v-btn
+            color="success"
+            class="mx-0 mt-3"
+            depressed
+            @click="submit"
+            :loading="loading"
+          >Add project</v-btn>
         </v-form>
       </v-card-text>
     </v-card>
@@ -68,14 +81,17 @@ export default {
       due: null,
       inputRules: [
         v => v.length >= 3 || 'Minimum length is 3 characters'
-      ]
+      ],
+      loading: false,
     };
   },
 
   methods: {
     async submit() {
       if (this.$refs.form.validate()) {
-        console.log(this.title, this.content);
+        // console.log(this.title, this.content);
+        this.loading = true;
+
         const project = {
           title: this.title,
           content: this.content,
@@ -91,8 +107,16 @@ export default {
         //   })
 
         // Add a new document with a generated id.
-        const docRef = await addDoc(collection(db, "projects"), project);
-        console.log("Document written with ID: ", docRef.id);
+        // const docRef = await addDoc(collection(db, "projects"), project);
+
+        addDoc(collection(db, "projects"), project)
+          .then(docRef => {
+            console.log('added to db');
+            console.log("Document written with ID: ", docRef.id);
+            this.loading = false;
+            this.dialog = false;
+          })
+
       }
     },
   },
