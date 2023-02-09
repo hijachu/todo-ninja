@@ -1,5 +1,19 @@
 <template>
   <nav>
+
+    <v-snackbar
+      v-model="snackbar"
+      :timeout="4000"
+      top
+      color="success"
+    >
+      <span>Awesome! You added a new project.</span>
+      <v-btn
+        text
+        color="white"
+        @click.native="snackbar = false">Close</v-btn>
+    </v-snackbar>
+
     <v-toolbar flat color="grey lighten-4">
       <v-app-bar-nav-icon class="grey--text" @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="text-uppercase grey--text">
@@ -20,7 +34,6 @@
             color="grey"
             v-bind="attrs"
             v-on="on"
-
           >
             <v-icon color="">mdi-chevron-down</v-icon>
             <span>menu</span>
@@ -32,7 +45,6 @@
             v-for="link in links"
             :key="link.text"
             :to="link.route"
-
             active-class="primary--text"
           >
             <v-list-item-title>{{ link.text }}</v-list-item-title>
@@ -51,7 +63,11 @@
       -->
     </v-toolbar>
 
-    <v-navigation-drawer v-model="drawer" app absolute class="primary">
+    <v-navigation-drawer
+      v-model="drawer"
+      app absolute
+      class="primary"
+    >
       <v-list class="mt-5">
         <v-list-item class="d-flex justify-center">
           <v-list-item-avatar size="100">
@@ -69,7 +85,7 @@
 
         <v-list-item class="mt-4 mb-3">
           <v-list-item-content>
-            <Popup />
+            <Popup @projectAdded="snackbar = true; drawer = false"/>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -119,7 +135,8 @@ export default {
           text: 'Team',
           route: '/team'
         },
-      ]
+      ],
+      snackbar: false
     }
   },
   methods: {
